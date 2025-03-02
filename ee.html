@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Tài Liệu Học Tập</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #1e3c72, #2a5298, #6b73ff, #000d1a);
+            background-size: 300% 300%;
+            animation: gradientBG 6s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 1s ease-in-out;
+        }
+        .back-button {
+        display: block;
+        width: fit-content;
+        margin: 20px auto;
+        padding: 12px 24px;
+        background: #3498db;
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 8px;
+        transition: background 0.3s, transform 0.2s;
+        text-align: center;
+    }
+    .back-button:hover {
+        background: #2980b9;
+        transform: scale(1.1);
+    }
+        .section {
+            padding: 20px;
+            border-radius: 12px;
+            width: 30%;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .section:nth-child(1) { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+        .section:nth-child(2) { background: linear-gradient(45deg, #a1c4fd, #c2e9fb); }
+        .section:nth-child(3) { background: linear-gradient(45deg, #d4fc79, #96e6a1); }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            opacity: 0.9;
+        }
+        .file-list {
+            display: none;
+            margin-top: 10px;
+        }
+        .file-list a {
+            display: block;
+            background: linear-gradient(45deg, #ff416c, #ff4e50);
+            color: white;
+            padding: 12px 18px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .file-list a:hover {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            transform: scale(1.1);
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+        .info {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            box-shadow: 0px 5px 20px rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .info h3 {
+            font-size: 1.8em;
+            text-transform: uppercase;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.8em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+    </style>
+    <script>
+        function toggleFiles(section) {
+            let files = section.querySelector('.file-list');
+            let allSections = document.querySelectorAll('.file-list');
+            allSections.forEach(sec => {
+                if (sec !== files) sec.style.display = 'none';
+            });
+            files.style.display = (files.style.display === 'block') ? 'none' : 'block';
+        }
+    </script>
+</head>
+<body>
+    <h1>📚 Kho Tài Liệu Học Tập của Tiến<br>Anh em muốn tải file thì lên đây mà tải nha, free 100% !</h1>
+    <div class="container">
+        <div class="section" onclick="toggleFiles(this)">
+            <h2>📄 Đề cương ôn tập</h2>
+            <div class="file-list">
+                <a href="https://app.mediafire.com/65q9aww5kct3x" target="_blank">📥 Đề cương ôn tập tiếng anh unit 7</a>
+                <a href="https://www.mediafire.com/file/n295fqi3s6297rm/ĐỀ+CƯƠNG+LỊCH+SỬ+CHƯƠNG+5.+TIẾN.docx/file" target="_blank">📥 Đề cương lịch sử chương 5</a>
+            </div>
+        </div>
+        <div class="section" onclick="toggleFiles(this)">
+            <h2>📂 Tài liệu học tập</h2>
+            <div class="file-list">
+                <p>📚 Hiện chưa có tài liệu</p>
+            </div>
+        </div>
+        <div class="section" onclick="toggleFiles(this)">
+            <h2>📁 File khác</h2>
+            <div class="file-list">
+                <p>📂 Hiện chưa có file</p>
+            </div>
+        </div>
+    </div>
+    <div class="info">
+        <h3>Thông tin liên hệ</h3>
+        <p>FaceBook: <a href="https://www.facebook.com/profile.php?id=61559474864474" target="_blank">Nguyễn Đức Tiến</a></p>
+        <p><strong>Email:</strong> nguyenductienddls1603@gmail.com</p>
+        <p><strong>Zalo:</strong> 0345451080</p>
+    </div>
+    <footer>
+        <p>📌 Trang web được thiết kế để quản lý và chia sẻ tài liệu học tập, vân vân và mây mây !</p>
+    </footer>
+    <a href="index.html" class="back-button">⬅ Quay về Trang Chủ</a>
+
+    <footer>
+        <p class="copyright">&copy; 2025 Bản quyên thuộc quyền sở hữu của Nguyễn Đức Tiến.</p>
+    </footer>
+</body>
+</html>
+

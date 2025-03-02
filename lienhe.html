@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liên Hệ</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: white;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 90%;
+            max-width: 450px;
+        }
+        .contact-form, .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        .contact-form h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .contact-form label {
+            font-weight: 400;
+            display: block;
+            margin: 8px 0 4px;
+            text-align: left;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 16px;
+            outline: none;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .contact-form button {
+            width: 100%;
+            padding: 12px;
+            background: #ff7eb3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .contact-form button:hover {
+            background: #ff5891;
+        }
+        .contact-info {
+            font-size: 18px;
+            padding: 15px;
+            text-align: center;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .contact-info a {
+            color: #ffcccb;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .contact-info a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        .back-button {
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background 0.3s, transform 0.2s;
+    text-align: center;
+}
+.back-button:hover {
+    background: #2980b9;
+    transform: scale(1.1);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="contact-form" class="contact-form">
+            <h2>Liên Hệ</h2>
+            <label for="name">Họ và Tên:</label>
+            <input type="text" id="name" name="name" required placeholder="Nhập họ tên của bạn">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Nhập email của bạn">
+
+            <label for="message">Tin nhắn:</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Nhập tin nhắn của bạn"></textarea>
+
+            <button type="submit">Gửi</button>
+        </form>
+        <div class="contact-info">
+            <p><strong>Nguyễn Đức Tiến</strong></p>
+            <p>Zalo: 0345451080</p>
+            <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61559474864474" target="_blank">Nhấn vào đây</a></p>
+        </div>
+    </div>
+    <a href="index.html" class="back-button">⬅ Quay về Trang Chủ</a>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+    (function() {
+        emailjs.init("g2X7ZCjz60jXQNtBG"); // Thay bằng Public Key của bạn
+    })();
+
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Ngăn trang web load lại khi gửi form
+
+        let submitButton = this.querySelector("button"); // Lấy nút Gửi
+        submitButton.disabled = true; // Vô hiệu hóa nút gửi để tránh spam
+        submitButton.textContent = "Đang gửi..."; // Hiển thị trạng thái gửi
+
+        emailjs.sendForm("service_tu0dch9", "template_e6mi93f", this)
+            .then(function(response) {
+                alert("✅ Gửi thành công! 🎉");
+                document.getElementById("contact-form").reset(); // Reset form sau khi gửi
+            }, function(error) {
+                alert("❌ Lỗi khi gửi. Vui lòng thử lại.");
+                console.log("Lỗi gửi email:", error);
+            })
+            .finally(() => {
+                submitButton.disabled = false; // Bật lại nút gửi
+                submitButton.textContent = "Gửi"; // Đặt lại nội dung nút
+            });
+    });
+</script>
+</body>
+</html>
